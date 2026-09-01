@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VENDIFI™ | Footwear Uganda</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#111;
+}
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:#fff;
+border-bottom:1px solid #ddd;
+}
+.nav{
+max-width:1200px;
+margin:auto;
+padding:18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+.logo{
+font-size:27px;
+font-weight:900;
+}
+.logo span{font-weight:400}
+.cart{
+background:#111;
+color:#fff;
+padding:12px 18px;
+border-radius:25px;
+border:0;
+font-weight:bold;
+}
+
+.hero{
+max-width:1200px;
+margin:auto;
+padding:70px 20px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+.hero h1{
+font-size:70px;
+line-height:.9;
+letter-spacing:-4px;
+}
+.hero h1 span{
+background:linear-gradient(90deg,#111,#777,#111);
+background-size:200%;
+color:transparent;
+background-clip:text;
+animation:shine 4s linear infinite;
+}
+@keyframes shine{
+to{background-position:200%}
+}
+.hero p{
+margin:25px 0;
+color:#666;
+font-size:18px;
+max-width:550px;
+}
+.hero img{
+width:100%;
+height:500px;
+object-fit:cover;
+border-radius:25px;
+box-shadow:0 25px 60px #0003;
+transition:.5s;
+}
+.hero img:hover{
+transform:scale(1.02);
+}
+
+.search-box{
+max-width:900px;
+margin:0 auto 35px;
+padding:0 20px;
+}
+.search{
+background:white;
+display:flex;
+padding:7px;
+border-radius:15px;
+box-shadow:0 10px 30px #0001;
+}
+.search input{
+flex:1;
+border:0;
+outline:0;
+padding:14px;
+font-size:15px;
+}
+.search button{
+background:#111;
+color:#fff;
+border:0;
+border-radius:10px;
+padding:0 20px;
+font-weight:bold;
+}
+
+.categories{
+max-width:1200px;
+margin:auto;
+padding:10px 20px 35px;
+}
+.categories h2{
+font-size:30px;
+margin-bottom:15px;
+}
+.category-list{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding-bottom:8px;
+}
+.category{
+white-space:nowrap;
+border:1px solid #ddd;
+background:white;
+padding:12px 18px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:.25s;
+}
+.category:hover,
+.category.active{
+background:#111;
+color:#fff;
+transform:translateY(-3px);
+}
+
+.shop{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+.shop-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+.shop-header h2{
+font-size:36px;
+}
+.shop-layout{
+display:grid;
+grid-template-columns:230px 1fr;
+gap:25px;
+}
+.filters{
+background:#fff;
+padding:20px;
+border-radius:18px;
+height:max-content;
+}
+.filters h3{
+margin-bottom:15px;
+}
+.filter{
+padding:15px 0;
+border-top:1px solid #eee;
+}
+.filter label{
+display:block;
+font-size:12px;
+font-weight:bold;
+margin-bottom:8px;
+text-transform:uppercase;
+}
+.filter select,
+.filter input{
+width:100%;
+padding:10px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+.check{
+display:flex!important;
+align-items:center;
+gap:7px;
+margin:8px 0;
+text-transform:none!important;
+font-weight:normal!important;
+font-size:14px!important;
+}
+.check input{
+width:auto;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+.product{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+border:1px solid #e5e5e5;
+transition:.35s;
+animation:appear .5s both;
+}
+.product:hover{
+transform:translateY(-7px);
+box-shadow:0 20px 45px #0002;
+}
+@keyframes appear{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:none}
+}
+.product-image{
+height:270px;
+position:relative;
+overflow:hidden;
+}
+.product-image img{
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+.product:hover img{
+transform:scale(1.08);
+}
+.badge{
+position:absolute;
+top:12px;
+left:12px;
+background:#111;
+color:#fff;
+padding:6px 9px;
+border-radius:20px;
+font-size:10px;
+font-weight:bold;
+}
+.product-info{
+padding:15px;
+}
+.product-info h3{
+margin:4px 0;
+font-size:17px;
+}
+.meta{
+font-size:12px;
+color:#777;
+}
+.price{
+font-weight:900;
+font-size:17px;
+margin-top:10px;
+}
+.old{
+font-size:11px;
+color:#999;
+text-decoration:line-through;
+margin-left:5px;
+}
+.stock{
+font-size:11px;
+margin-top:5px;
+font-weight:bold;
+}
+.in{color:#159447}
+.out{color:#c62828}
+.add{
+width:100%;
+margin-top:12px;
+padding:12px;
+border:0;
+border-radius:10px;
+background:#111;
+color:white;
+font-weight:bold;
+}
+
+footer{
+margin-top:60px;
+background:#111;
+color:#fff;
+padding:50px 20px;
+text-align:center;
+}
+footer p{
+color:#aaa;
+margin-top:10px;
+}
+
+@media(max-width:850px){
+.hero{
+grid-template-columns:1fr;
+padding-top:45px;
+}
+.hero h1{font-size:55px}
+.hero img{height:380px}
+.shop-layout{
+grid-template-columns:1fr;
+}
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:550px){
+.nav{padding:15px}
+.logo{font-size:22px}
+.hero h1{font-size:48px}
+.grid{
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+.product-image{
+height:190px;
+}
+.product-info{
+padding:10px;
+}
+.product-info h3{
+font-size:14px;
+}
+.price{
+font-size:14px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+<div class="logo">VENDIFI<span>™</span></div>
+<button class="cart">🛒 Cart <span id="cartCount">0</span></button>
+</div>
+</header>
+
+<section class="hero">
+
+<div>
+<h1>
+FIND<br>
+<span>YOUR NEXT PAIR.</span>
+</h1>
+
+<p>
+Discover trending footwear in Uganda — sneakers,
+slides, sandals, heels, loafers, boots and more.
+</p>
+
+<a href="#shop">
+<button class="cart">SHOP NOW →</button>
+</a>
+</div>
+
+<div>
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=90">
+</div>
+
+</section>
+
+<div class="search-box">
+<div class="search">
+<input
+id="search"
+type="search"
+placeholder="Search sneakers, slides, heels, size 42..."
+oninput="filterProducts()"
+>
+<button onclick="filterProducts()">SEARCH</button>
+</div>
+</div>
+
+<section class="categories">
+
+<h2>Shop by category</h2>
+
+<div class="category-list">
+
+<button class="category active" onclick="categoryFilter('All',this)">
+All
+</button>
+
+<button class="category" onclick="categoryFilter('Sneakers',this)">
+👟 Sneakers
+</button>
+
+<button class="category" onclick="categoryFilter('Slides',this)">
+🩴 Slides
+</button>
+
+<button class="category" onclick="categoryFilter('Sandals',this)">
+👡 Sandals
+</button>
+
+<button class="category" onclick="categoryFilter('Heels',this)">
+👠 Heels
+</button>
+
+<button class="category" onclick="categoryFilter('Loafers',this)">
+👞 Loafers
+</button>
+
+<button class="category" onclick="categoryFilter('Boots',this)">
+🥾 Boots
+</button>
+
+<button class="category" onclick="categoryFilter('Flats',this)">
+🥿 Flats
+</button>
+
+<button class="category" onclick="categoryFilter('Sports',this)">
+🏃 Sports
+</button>
+
+<button class="category" onclick="categoryFilter('School',this)">
+🎒 School
+</button>
+
+</div>
+
+</section>
+
+<section class="shop" id="shop">
+
+<div class="shop-header">
+<div>
+<h2>Footwear</h2>
+<p id="result">20 products</p>
+</div>
+</div>
+
+<div class="shop-layout">
+
+<aside class="filters">
+
+<h3>FILTERS</h3>
+
+<div class="filter">
+
+<label>Gender</label>
+
+<label class="check">
+<input type="checkbox" value="Men" name="gender" onchange="filterProducts()">
+Men
+</label>
+
+<label class="check">
+<input type="checkbox" value="Women" name="gender" onchange="filterProducts()">
+Women
+</label>
+
+<label class="check">
+<input type="checkbox" value="Unisex" name="gender" onchange="filterProducts()">
+Unisex
+</label>
+
+<label class="check">
+<input type="checkbox" value="Kids" name="gender" onchange="filterProducts()">
+Kids
+</label>
+
+</div>
+
+<div class="filter">
+
+<label>Size</label>
+
+<select id="size" onchange="filterProducts()">
+
+<option value="All">Any size</option>
+
+<option>35</option>
+<option>36</option>
+<option>37</option>
+<option>38</option>
+<option>39</option>
+<option>40</option>
+<option>41</option>
+<option>42</option>
+<option>43</option>
+<option>44</option>
+<option>45</option>
+<option>46</option>
+
+</select>
+
+</div>
+
+<div class="filter">
+
+<label>Availability</label>
+
+<label class="check">
+<input
+type="checkbox"
+id="stock"
+onchange="filterProducts()"
+>
+In stock only
+</label>
+
+</div>
+
+</aside>
+
+<div class="grid" id="products"></div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>VENDIFI™</h2>
+
+<p>
+Your next pair is waiting.
+</p>
+
+<p>
+Uganda • Discover • Compare • Order
+</p>
+
+</footer>
+
+<script>
+
+const products=[
+
+{
+name:"Retro Street Runner",
+category:"Sneakers",
+gender:"Unisex",
+price:150000,
+size:[38,39,40,41,42,43,44],
+stock:8,
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Classic Court White",
+category:"Sneakers",
+gender:"Unisex",
+price:135000,
+size:[38,39,40,41,42,43],
+stock:5,
+badge:"POPULAR",
+image:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Urban Runner",
+category:"Sports",
+gender:"Men",
+price:185000,
+size:[40,41,42,43,44,45],
+stock:4,
+badge:"SPORT",
+image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Ladies Fashion Sneaker",
+category:"Sneakers",
+gender:"Women",
+price:110000,
+size:[36,37,38,39,40,41],
+stock:7,
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Classic Penny Loafer",
+category:"Loafers",
+gender:"Men",
+price:160000,
+size:[40,41,42,43,44,45],
+stock:7,
+badge:"BEST SELLER",
+image:"https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Elegant Block Heel",
+category:"Heels",
+gender:"Women",
+price:145000,
+size:[36,37,38,39,40,41],
+stock:5,
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Square Toe Flat",
+category:"Flats",
+gender:"Women",
+price:95000,
+size:[36,37,38,39,40],
+stock:9,
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=800&q=85"
+},
+
+/* SLIDES */
+
+{
+name:"Classic Black Slide",
+category:"Slides",
+gender:"Unisex",
+price:65000,
+size:[38,39,40,41,42,43,44],
+stock:15,
+badge:"HOT",
+image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Platform Fashion Slide",
+category:"Slides",
+gender:"Women",
+price:85000,
+size:[36,37,38,39,40,41],
+stock:8,
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Everyday Comfort Slide",
+category:"Slides",
+gender:"Men",
+price:70000,
+size:[40,41,42,43,44],
+stock:12,
+badge:"POPULAR",
+image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=800&q=85"
+},
+
+/* SANDALS */
+
+{
+name:"Ladies Flat Sandal",
+category:"Sandals",
+gender:"Women",
+price:65000,
+size:[36,37,38,39,40],
+stock:10,
+badge:"POPULAR",
+image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Platform Sandal",
+category:"Sandals",
+gender:"Women",
+price:90000,
+size:[36,37,38,39,40,41],
+stock:4,
+badge:"TRENDING",
+image:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=800&q=85"
+},
+
+/* BOOTS */
+
+{
+name:"Chelsea Style Boot",
+category:"Boots",
+gender:"Unisex",
+price:210000,
+size:[39,40,41,42,43,44],
+stock:3,
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Chunky Street Boot",
+category:"Boots",
+gender:"Men",
+price:220000,
+size:[40,41,42,43,44,45],
+stock:0,
+badge:"HOT",
+image:"https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=85"
+},
+
+/* SCHOOL */
+
+{
+name:"Classic School Shoe",
+category:"School",
+gender:"Kids",
+price:70000,
+size:[35,36,37,38,39],
+stock:11,
+badge:"VALUE",
+image:"https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Kids School Runner",
+category:"School",
+gender:"Kids",
+price:85000,
+size:[35,36,37,38,39],
+stock:8,
+badge:"POPULAR",
+image:"https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=800&q=85"
+},
+
+/* MORE SNEAKERS */
+
+{
+name:"Men's Casual Sneaker",
+category:"Sneakers",
+gender:"Men",
+price:125000,
+size:[40,41,42,43,44],
+stock:6,
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Street White Sneaker",
+category:"Sneakers",
+gender:"Unisex",
+price:140000,
+size:[38,39,40,41,42,43],
+stock:5,
+badge:"HOT",
+image:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Training Sneaker",
+category:"Sports",
+gender:"Men",
+price:175000,
+size:[40,41,42,43,44,45],
+stock:4,
+badge:"SPORT",
+image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"Ladies Casual Flat",
+category:"Flats",
+gender:"Women",
+price:90000,
+size:[36,37,38,39,40],
+stock:6,
+badge:"NEW",
+image:"https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=800&q=85"
+}
+
+];
+
+let selectedCategory="All";
+
+function money(n){
+return "UGX "+n.toLocaleString("en-UG");
+}
+
+function display(list){
+
+const box=document.getElementById("products");
+
+if(!list.length){
+
+box.innerHTML=`
+<div style="grid-column:1/-1;text-align:center;padding:60px">
+<h2>No footwear found</h2>
+<p>Try another search or filter.</p>
+</div>`;
+
+}else{
+
+box.innerHTML=list.map((p,i)=>`
+
+<div class="product" style="animation-delay:${i*40}ms">
+
+<div class="product-image">
+
+<img src="${p.image}" loading="lazy">
+
+<span class="badge">
+${p.badge}
+</span>
+
+</div>
+
+<div class="product-info">
+
+<div class="meta">
+${p.gender} • ${p.category}
+</div>
+
+<h3>
+${p.name}
+</h3>
+
+<div class="price">
+${money(p.price)}
+</div>
+
+<div class="stock ${p.stock?"in":"out"}">
+${p.stock ? p.stock+" in stock":"Out of stock"}
+</div>
+
+<button class="add" onclick="addCart()">
+ADD TO CART
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+document.getElementById("result").textContent=
+list.length+" product"+(list.length===1?"":"s");
+
+}
+
+function filterProducts(){
+
+const query=
+document.getElementById("search").value.toLowerCase();
+
+const size=
+document.getElementById("size").value;
+
+const stockOnly=
+document.getElementById("stock").checked;
+
+const genders=
+[...document.querySelectorAll('input[name="gender"]:checked')]
+.map(x=>x.value);
+
+let result=products.filter(p=>{
+
+const text=
+(p.name+" "+p.category+" "+p.gender)
+.toLowerCase();
+
+const queryWords=query.split(/\s+/).filter(Boolean);
+
+const searchOK=
+queryWords.every(word=>{
+
+const number=Number(word);
+
+if(number>=35 && number<=46){
+return p.size.includes(number);
+}
+
+return text.includes(word);
+
+});
+
+const categoryOK=
+selectedCategory==="All" ||
+p.category===selectedCategory;
+
+const genderOK=
+!genders.length ||
+genders.includes(p.gender);
+
+const sizeOK=
+size==="All" ||
+p.size.includes(Number(size));
+
+const stockOK=
+!stockOnly ||
+p.stock>0;
+
+return searchOK &&
+categoryOK &&
+genderOK &&
+sizeOK &&
+stockOK;
+
+});
+
+display(result);
+
+}
+
+function categoryFilter(category,button){
+
+selectedCategory=category;
+
+document
+.querySelectorAll(".category")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+filterProducts();
+
+document
+.getElementById("shop")
+.scrollIntoView({behavior:"smooth"});
+
+}
+
+let cartCount=0;
+
+function addCart(){
+
+cartCount++;
+
+document.getElementById("cartCount").textContent=cartCount;
+
+}
+
+display(products);
+
+</script>
+
+</body>
+  </html>
